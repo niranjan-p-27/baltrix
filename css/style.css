@@ -1,0 +1,317 @@
+/* ===================================================== 
+BALTRIX – MODERN INDUSTRY-LEVEL STYLING + BACKGROUND 
+===================================================== */ 
+
+/* -------------------- ROOT VARIABLES -------------------- */ 
+:root { 
+  --accent-primary: #00d084; /* green neon */ 
+  --accent-secondary: #7bdcb5; 
+  --text-main: #ffffff; 
+  --bg-dark: #0f0f13; 
+  --bg-light: #1f2937; 
+} 
+
+/* -------------------- GLOBAL -------------------- */ 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: 'Segoe UI', Roboto, sans-serif; 
+} 
+
+body { 
+  min-height: 100vh; 
+  background: var(--bg-dark); 
+  color: #e5e7eb; 
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-start; 
+  padding: 40px 20px; 
+  overflow-x: hidden; 
+} 
+
+/* -------------------- BACKGROUND CANVAS -------------------- */ 
+#bg-canvas { 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  z-index: 0; 
+  pointer-events: none; 
+  background: var(--bg-dark); 
+} 
+
+/* -------------------- CONTAINER -------------------- */ 
+.container { 
+  width: 100%; 
+  max-width: 1100px; 
+  background: linear-gradient(145deg, #0b0c10, #1c1f2a); 
+  border-radius: 24px; 
+  padding: 48px 40px; 
+  overflow: hidden; 
+  min-height: 80vh; 
+  position: relative; 
+  z-index: 1; 
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 4px 20px rgba(0,0,0,0.3); 
+  animation: fadeIn 0.8s ease forwards; 
+} 
+
+/* -------------------- HEADER -------------------- */ 
+header { 
+  text-align: center; 
+  margin-bottom: 48px; 
+  animation: slideDown 0.8s ease forwards; 
+} 
+
+h1 { 
+  font-size: 3rem; 
+  font-weight: 900; 
+  color: var(--accent-primary); 
+  margin-bottom: 12px; 
+  letter-spacing: -1px; 
+} 
+
+h1 i { 
+  font-size: 2.8rem; 
+  margin-right: 12px; 
+  vertical-align: middle; 
+} 
+
+p { 
+  font-size: 1.25rem; 
+  color: #9ca3af; 
+  max-width: 600px; 
+  margin: 0 auto; 
+} 
+
+/* -------------------- STEP TITLES -------------------- */ 
+h2 { 
+  font-size: 2rem; 
+  font-weight: 700; 
+  margin-bottom: 32px; 
+  color: #e5e7eb; 
+  text-align: center; 
+} 
+
+/* -------------------- TAGS -------------------- */ 
+.tags { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 12px; 
+  justify-content: center; 
+  margin-bottom: 40px; 
+} 
+
+.flatmate-tag { 
+  background: linear-gradient(145deg, #00d084, #7bdcb5); 
+  color: #020617; 
+  padding: 12px 24px; 
+  border-radius: 999px; 
+  font-weight: 600; 
+  font-size: 1.1rem; 
+  box-shadow: 0 4px 14px rgba(0,208,132,0.3); 
+  cursor: default; 
+  transition: all 0.3s ease; 
+} 
+
+.flatmate-tag:hover { 
+  transform: scale(1.05); 
+  box-shadow: 0 6px 18px rgba(0,208,132,0.5); 
+} 
+
+/* -------------------- INPUTS + DROPDOWN -------------------- */ 
+.input-group { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 16px; 
+  justify-content: center; 
+  margin: 32px 0; 
+} 
+
+input, select, textarea { 
+  flex: 1 1 220px; 
+  padding: 16px 20px; 
+  border: 2px solid #374151; 
+  border-radius: 14px; 
+  font-size: 1.1rem; 
+  background: rgba(255,255,255,0.05); 
+  color: #e5e7eb; 
+  transition: all 0.3s ease; 
+} 
+
+input:focus, select:focus, textarea:focus { 
+  border-color: var(--accent-primary); 
+  box-shadow: 0 0 12px rgba(0,208,132,0.5); 
+  outline: none; 
+} 
+
+select option { 
+  background: #1c1f2a; 
+  color: #e5e7eb; 
+} 
+
+textarea { 
+  min-height: 80px; 
+  resize: vertical; 
+} 
+
+/* -------------------- BUTTONS -------------------- */ 
+button { 
+  padding: 16px 32px; 
+  border-radius: 14px; 
+  border: none; 
+  font-weight: 600; 
+  font-size: 1rem; 
+  cursor: pointer; 
+  transition: all 0.25s ease; 
+} 
+
+.next-btn { 
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); 
+  color: #020617; 
+} 
+
+.next-btn:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 30px rgba(0,208,132,0.6); 
+} 
+
+.back-btn { 
+  background: #1f2937; 
+  color: var(--text-main); 
+} 
+
+.back-btn:hover { 
+  background: #374151; 
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 30px rgba(0,208,132,0.3); 
+} 
+
+.actions { 
+  display: flex; 
+  justify-content: center; 
+  gap: 20px; 
+  margin-top: 40px; 
+  flex-wrap: wrap; 
+} 
+
+/* -------------------- STEPS -------------------- */ 
+.step { 
+  display: none; 
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: all 0.5s ease; 
+} 
+
+.step.active { 
+  display: block; 
+  opacity: 1; 
+  transform: translateY(0); 
+} 
+
+/* -------------------- CARDS -------------------- */ 
+.card { 
+  background: rgba(255,255,255,0.05); 
+  border-radius: 20px; 
+  padding: 32px; 
+  margin: 32px auto; 
+  max-width: 900px; 
+  border: 1px solid rgba(255,255,255,0.1); 
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+  transition: all 0.4s ease; 
+} 
+
+.card:hover { 
+  transform: translateY(-4px); 
+  box-shadow: 0 14px 36px rgba(0,208,132,0.6); 
+} 
+
+.summary-card { 
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  color: var(--accent-primary); 
+  text-align: center; 
+} 
+
+/* -------------------- EXPENSE ITEMS -------------------- */ 
+.expenses { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 20px; 
+  margin: 32px 0; 
+} 
+
+.expense-item { 
+  background: rgba(255,255,255,0.05); 
+  padding: 20px; 
+  border-radius: 16px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+  font-size: 1.05rem; 
+  border: 1px solid rgba(255,255,255,0.1); 
+  transition: all 0.3s ease; 
+} 
+
+.expense-item:hover { 
+  transform: translateY(-4px) scale(1.02); 
+  box-shadow: 0 12px 28px rgba(0,208,132,0.5); 
+} 
+
+.expense-item strong { 
+  font-size: 1.2rem; 
+  color: #e5e7eb; 
+} 
+
+/* -------------------- BALANCES -------------------- */ 
+.balance-item { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px 0; 
+  border-bottom: 1px solid rgba(255,255,255,0.1); 
+  font-size: 1.3rem; 
+  font-weight: 600; 
+} 
+
+.balance-positive, .balance-negative { 
+  color: var(--accent-primary); 
+} 
+
+/* -------------------- SETTLEMENT LIST -------------------- */ 
+.settlement-list { 
+  list-style: none; 
+  padding-left: 0; 
+} 
+
+.settlement-list li { 
+  display: flex; 
+  justify-content: space-between; 
+  font-size: 1.1rem; 
+  padding: 8px 0; 
+  border-bottom: 1px dashed rgba(255,255,255,0.1); 
+  transition: all 0.3s ease; 
+} 
+
+.settlement-list li:hover { 
+  transform: translateX(4px); 
+  color: var(--accent-primary); 
+} 
+
+/* -------------------- ANIMATIONS -------------------- */ 
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(20px);} 
+  to { opacity: 1; transform: translateY(0);} 
+} 
+
+@keyframes slideDown { 
+  from { opacity: 0; transform: translateY(-20px);} 
+  to { opacity: 1; transform: translateY(0);} 
+} 
+
+/* -------------------- MEDIA -------------------- */ 
+@media (max-width: 768px) { 
+  .container { padding: 32px 20px; border-radius: 0;} 
+  .input-group { flex-direction: column; gap: 12px;} 
+}
