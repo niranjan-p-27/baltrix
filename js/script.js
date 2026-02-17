@@ -1,3 +1,4 @@
+//script.js
 let flatName = '';
 let flatmates = [];
 let expenses = [];

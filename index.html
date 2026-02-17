@@ -8,76 +8,101 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <canvas id="bg-canvas"></canvas>
 
-  <div class="container">
-    <header>
-      <h1><i class="fas fa-home"></i> Baltrix</h1>
-      <p>Simple fair splits for flatmates, PGs & shared living</p>
-      <h3 id="flat-name-display"></h3>
-    </header>
+<!-- AUTH CHECK -->
+<script>
+  const user = localStorage.getItem("baltrixUser");
+  if (!user) {
+    window.location.href = "login.html";
+  }
+</script>
 
-    <!-- STEP 0 -->
-    <section id="step-flatname" class="step active">
-      <h2>Start with Flat / PG Name</h2>
-      <div class="input-group">
-        <input id="flat-name" placeholder="e.g. Flat 301" />
-        <button onclick="addFlatName()">Create</button>
-      </div>
-    </section>
+<canvas id="bg-canvas"></canvas>
 
-    <!-- STEP 1 -->
-    <section id="step-flatmates" class="step">
-      <h2>Add Flatmates</h2>
-      <div id="flatmates-list" class="tags"></div>
-      <div class="input-group">
-        <input id="new-flatmate" placeholder="Name" />
-        <button onclick="addFlatmate()">Add</button>
-      </div>
-      <div class="actions">
-        <button class="back-btn" onclick="showStep('step-flatname')">Back</button>
-        <button class="next-btn" id="next-to-expenses" onclick="goToExpenses()" disabled>Next →</button>
-      </div>
-    </section>
+<div class="container">
+  <header>
+    <h1><i class="fas fa-home"></i> Baltrix</h1>
+    <p>Simple fair splits for flatmates, PGs & shared living</p>
+    <h3 id="flat-name-display"></h3>
 
-    <!-- STEP 2 -->
-    <section id="step-expenses" class="step">
-      <h2>Add Expenses</h2>
-      <div id="expenses-list" class="expenses"></div>
-      <div class="input-group">
-        <input id="exp-desc" placeholder="Rent / Electricity" />
-        <input id="exp-amount" type="number" placeholder="₹ Amount" />
-        <select id="exp-paidby">
-          <option value="">Paid by...</option>
-        </select>
-        <input id="exp-category" placeholder="Category (optional)" />
-        <button onclick="addExpense()">Add</button>
-      </div>
-      <div class="card summary-card">
-        <div>Total: ₹<span id="total-so-far">0</span></div>
-        <div>Per Person: ₹<span id="fair-share">0</span></div>
-      </div>
-      <div class="actions">
-        <button class="back-btn" onclick="showStep('step-flatmates')">Back</button>
-        <button class="next-btn" id="next-to-summary" onclick="goToSummary()" disabled>Calculate →</button>
-      </div>
-    </section>
+    <!-- LOGOUT BUTTON -->
+    <div style="margin-top:15px;">
+      <button class="back-btn" onclick="logout()">Logout</button>
+    </div>
+  </header>
 
-    <!-- STEP 3 -->
-    <section id="step-summary" class="step">
-      <h2>Settlement</h2>
-      <div id="settlement-result"></div>
-      <div class="actions">
-        <button class="back-btn" onclick="showStep('step-expenses')">Edit</button>
-        <button onclick="downloadSummary()">Download</button>
-        <button onclick="resetApp()">New Flat</button>
-        <button onclick="goToInsights()">Insights</button>
-      </div>
-    </section>
-  </div>
+  <!-- STEP 0 -->
+  <section id="step-flatname" class="step active">
+    <h2>Start with Flat / PG Name</h2>
+    <div class="input-group">
+      <input id="flat-name" placeholder="e.g. Flat 301" />
+      <button onclick="addFlatName()">Create</button>
+    </div>
+  </section>
+
+  <!-- STEP 1 -->
+  <section id="step-flatmates" class="step">
+    <h2>Add Flatmates</h2>
+    <div id="flatmates-list" class="tags"></div>
+    <div class="input-group">
+      <input id="new-flatmate" placeholder="Name" />
+      <button onclick="addFlatmate()">Add</button>
+    </div>
+    <div class="actions">
+      <button class="back-btn" onclick="showStep('step-flatname')">Back</button>
+      <button class="next-btn" id="next-to-expenses" onclick="goToExpenses()" disabled>Next →</button>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section id="step-expenses" class="step">
+    <h2>Add Expenses</h2>
+    <div id="expenses-list" class="expenses"></div>
+    <div class="input-group">
+      <input id="exp-desc" placeholder="Rent / Electricity" />
+      <input id="exp-amount" type="number" placeholder="₹ Amount" />
+      <select id="exp-paidby">
+        <option value="">Paid by...</option>
+      </select>
+      <input id="exp-category" placeholder="Category (optional)" />
+      <button onclick="addExpense()">Add</button>
+    </div>
+
+    <div class="card summary-card">
+      <div>Total: ₹<span id="total-so-far">0</span></div>
+      <div>Per Person: ₹<span id="fair-share">0</span></div>
+    </div>
+
+    <div class="actions">
+      <button class="back-btn" onclick="showStep('step-flatmates')">Back</button>
+      <button class="next-btn" id="next-to-summary" onclick="goToSummary()" disabled>Calculate →</button>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section id="step-summary" class="step">
+    <h2>Settlement</h2>
+    <div id="settlement-result"></div>
+    <div class="actions">
+      <button class="back-btn" onclick="showStep('step-expenses')">Edit</button>
+      <button onclick="downloadSummary()">Download</button>
+      <button onclick="resetApp()">New Flat</button>
+      <button onclick="goToInsights()">Insights</button>
+    </div>
+  </section>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+  function logout() {
+    localStorage.removeItem("baltrixUser");
+    window.location.href = "login.html";
+  }
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="js/background.js"></script>  
+<script src="js/background.js"></script>
 <script src="js/script.js"></script>
+
 </body>
 </html>

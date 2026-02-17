@@ -1,3 +1,4 @@
+//insights.js
 const data = JSON.parse(localStorage.getItem('baltrixData'));
 
 if (!data) {

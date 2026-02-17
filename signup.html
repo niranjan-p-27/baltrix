@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Baltrix - Sign Up</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+
+<div class="container">
+  <header>
+    <h1>Baltrix</h1>
+    <p>Create your account</p>
+  </header>
+
+  <div class="card">
+    <div class="input-group">
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button class="next-btn" onclick="signup()">Sign Up</button>
+    </div>
+    <p style="text-align:center;margin-top:20px;">
+      Already have account? <a href="login.html">Login</a>
+    </p>
+  </div>
+</div>
+
+<script src="js/background.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
